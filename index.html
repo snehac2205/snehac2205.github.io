@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Sneha Chavan: Purdue Computer Science student with a Finance minor. Projects, experience and skills.">
+<title>Sneha Chavan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+body{margin:0}img{max-width:100%}
+/* Layout: lighter hero band with a wave edge and an illustrated avatar sitting on it; below, a main column (projects, experience) beside a sidebar (skills, about, coursework, contact).
+   Single dark theme by choice. Maroon #a52a2a anchor with coral eyebrows and amber highlights. */
+:root {
+  --bg: #12101a;
+  --hero: #1d1a26;
+  --hero-2: #26222f;
+  --surface: #1f1b27;
+  --pill: #2e2836;
+  --ink: #f1ecee;
+  --soft: #d5ccd1;
+  --muted: #9b919a;
+  --line: #2f2a38;
+  --maroon: #a52a2a;
+  --maroon-text: #e0675a;
+  --coral: #ef5a73;
+  --amber: #f5a623;
+  --skin: #c98d68;
+  --display: "Bricolage Grotesque", "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
+  --body: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 16px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--ink); text-decoration: none; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 6px; }
+
+.inner {
+  max-width: 1120px; margin: 0 auto;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+
+/* Hero band */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--hero); }
+.hero { position: relative; background: linear-gradient(180deg, var(--hero) 0%, var(--hero-2) 100%); }
+header.top { padding-block: 32px 0; display: flex; align-items: center; gap: 48px; }
+.logo { display: inline-flex; align-items: center; gap: 4px; font: 700 20px var(--display); color: var(--coral); letter-spacing: -0.01em; white-space: nowrap; }
+.logo .spark { color: var(--amber); font-size: 12px; transform: translateY(-7px); display: inline-block; }
+.logo:hover .spark { transform: translateY(-7px) rotate(90deg); transition: transform .4s ease; }
+header nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 28px; }
+header nav a { font-weight: 500; font-size: 14.5px; color: var(--soft); }
+header nav a:hover { color: var(--amber); }
+.icons { margin-left: auto; display: flex; gap: 10px; }
+.icon {
+  width: 34px; height: 34px; border-radius: 8px; display: grid; place-items: center;
+  color: var(--soft); background: transparent;
+}
+.icon:hover { background: rgba(255,255,255,0.06); color: var(--amber); }
+.icon svg { width: 17px; height: 17px; }
+
+.hero-body { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: end; gap: 32px; padding-top: 56px; position: relative; z-index: 2; }
+.intro { padding-bottom: 96px; }
+.hello { font: 600 11.5px var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--coral); margin: 0 0 14px; }
+.intro h1 { margin: 0 0 16px; font-family: var(--display); font-weight: 700; font-size: clamp(32px, 4.4vw, 50px); line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance; }
+.intro h1 .name { color: var(--amber); }
+.intro .sub { margin: 0; font-size: 16px; color: var(--soft); max-width: 46ch; }
+
+.figure-wrap { position: relative; height: 320px; }
+.dots {
+  position: absolute; right: 0; bottom: 60px; width: 100%; max-width: 420px; height: 250px;
+  background-image: radial-gradient(circle, rgba(239, 90, 115, 0.55) 1.6px, transparent 2px);
+  background-size: 26px 26px; opacity: 0.8;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 25%, #000 85%, transparent);
+          mask-image: linear-gradient(90deg, transparent 0, #000 25%, #000 85%, transparent);
+}
+.avatar { position: absolute; left: 50%; bottom: -64px; width: 220px; transform: translateX(-35%); z-index: 3; animation: bob 5s ease-in-out infinite; }
+@keyframes bob { 0%, 100% { transform: translateX(-35%) translateY(0); } 50% { transform: translateX(-35%) translateY(-8px); } }
+.shuttle { position: absolute; right: 6%; top: 40px; width: 58px; z-index: 3; animation: flutter 6s ease-in-out infinite; }
+@keyframes flutter { 0%, 100% { transform: rotate(-18deg) translateY(0); } 50% { transform: rotate(-8deg) translateY(-12px); } }
+
+.wave { display: block; width: 100%; height: 120px; position: relative; z-index: 1; margin-top: -1px; }
+.wave path { fill: var(--bg); }
+
+/* Body: main + sidebar */
+.page { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 72px; padding-block: 64px 88px; }
+.eyebrow { margin: 0 0 26px; font: 700 17px var(--display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral); }
+main { display: grid; gap: 72px; min-width: 0; }
+section { scroll-margin-top: 24px; }
+
+.post { padding-block: 0 36px; }
+.post + .post { padding-top: 0; }
+.post h2 { margin: 0 0 4px; font: 600 20px/1.3 var(--display); letter-spacing: -0.005em; text-wrap: balance; }
+.post .when { margin: 0 0 10px; font: 400 12px var(--mono); color: var(--muted); }
+.post .when b { color: var(--soft); font-weight: 500; }
+.post p { margin: 0 0 12px; color: var(--soft); max-width: 66ch; font-size: 15px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 6px; margin: 0 0 12px;
+  font: 700 12px var(--body); color: #2a1300; background: var(--amber); border-radius: 999px; padding: 3px 11px;
+  box-shadow: 0 0 18px rgba(245, 166, 35, 0.35);
+}
+.badge::before { content: "★"; }
+.tags { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.tags li { font: 400 11.5px var(--mono); color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 4px; padding: 1px 7px; }
+.more {
+  display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 13px; color: var(--ink);
+  border: 1px solid var(--maroon); border-radius: 999px; padding: 5px 14px; margin-top: 2px;
+  transition: background .2s ease, border-color .2s ease;
+}
+.more:hover { background: var(--maroon); color: #fff; }
+.more::after { content: "→"; color: var(--coral); transition: transform .2s ease; }
+.more:hover::after { transform: translateX(4px); }
+.more:hover::after { color: #fff; }
+
+.job { padding-bottom: 32px; display: grid; gap: 4px; }
+.job h2 { margin: 0; font: 600 17.5px/1.3 var(--display); text-wrap: balance; }
+.job .org { margin: 0 0 10px; font-weight: 500; font-size: 14.5px; color: var(--maroon-text); }
+.job .org span { color: var(--muted); font: 400 12px var(--mono); margin-left: 8px; }
+.job ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: var(--soft); font-size: 14.5px; max-width: 68ch; }
+.job li::marker { color: var(--coral); }
+
+/* Sidebar */
+aside.side { display: grid; gap: 44px; align-content: start; }
+.side .eyebrow { margin-bottom: 14px; font-size: 14.5px; }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pills a, .pills span {
+  font: 500 12.5px var(--body); color: var(--soft); background: transparent;
+  padding: 2px 9px; border-radius: 5px; border: 1px solid var(--line);
+}
+.pills .hot { color: var(--ink); border-color: var(--maroon); }
+.skill-group + .skill-group { margin-top: 16px; }
+.skill-group h3 { margin: 0 0 8px; font: 400 11px var(--mono); color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.side p { margin: 0 0 10px; color: var(--soft); font-size: 14.5px; }
+.arrow-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.arrow-list li { display: grid; grid-template-columns: 18px minmax(0, 1fr); font-weight: 500; font-size: 14.5px; line-height: 1.45; color: var(--soft); }
+.arrow-list li::before { content: "→"; color: var(--coral); }
+.contact-card { background: transparent; border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 10px; }
+.email { font: 500 13px var(--mono); user-select: all; overflow-wrap: anywhere; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.btn { font: 600 12.5px var(--body); padding: 5px 11px; border-radius: 6px; background: var(--maroon); color: #fff; border: 0; cursor: pointer; }
+.btn:hover { filter: brightness(1.12); }
+.btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--soft); }
+.seeking { color: var(--muted); font-size: 13px; }
+
+footer { border-top: 1px solid var(--line); padding-block: 28px 40px; color: var(--muted); font-size: 13px; }
+
+@media (max-width: 980px) {
+  header.top { flex-wrap: wrap; gap: 20px 32px; }
+  .page { grid-template-columns: minmax(0, 1fr); gap: 72px; }
+}
+@media (max-width: 760px) {
+  body { font-size: 15.5px; }
+  .inner { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  header.top { padding-top: 24px; }
+  header nav { width: 100%; order: 3; overflow-x: auto; scrollbar-width: none; }
+  header nav::-webkit-scrollbar { display: none; }
+  header nav ul { gap: 22px; }
+  header nav a { font-size: 14px; white-space: nowrap; }
+  .hero-body { grid-template-columns: minmax(0, 1fr); padding-top: 32px; gap: 0; }
+  .intro { padding-bottom: 8px; }
+  .figure-wrap { height: 240px; }
+  .avatar { width: 170px; bottom: -48px; }
+  .dots { height: 180px; bottom: 40px; }
+  .wave { height: 70px; }
+  .page { padding-block: 64px 72px; }
+  .post h2 { font-size: 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .avatar, .shuttle { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero" id="top">
+  <div class="inner">
+    <header class="top">
+      <a class="logo" href="#top">Sneha<span class="spark" aria-hidden="true">✦</span>Chavan</a>
+      <nav aria-label="Sections">
+        <ul>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="icons">
+        <a class="icon" href="https://www.linkedin.com/in/snehachavan5" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>
+        </a>
+        <a class="icon" href="https://github.com/snehac2205" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5"/><path d="M16 7l5 5-5 5"/><path d="M13.5 4l-3 16"/></svg>
+        </a>
+        <a class="icon" href="#contact" aria-label="Email" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <div class="hero-body">
+      <div class="intro">
+        <p class="hello">Hi there 👋</p>
+        <h1>I'm <span class="name">Sneha Chavan</span>.</h1>
+        <p class="sub">Computer Science student at Purdue with a minor in Finance. I build machine learning systems and apply them to real decisions, from flagging astronaut vision loss to pricing defense stocks.</p>
+      </div>
+      <div class="figure-wrap" aria-hidden="true">
+        <div class="dots"></div>
+        <!-- Shuttlecock (badminton) -->
+        <svg class="shuttle" viewBox="0 0 60 90">
+          <path d="M14 8 L46 8 L36 62 L24 62 Z" fill="#f4eee9"/>
+          <path d="M20 8 L26 62 M30 8 L30 62 M40 8 L34 62" stroke="#cfc4bf" stroke-width="2"/>
+          <path d="M16 26 H44 M18 42 H42" stroke="#cfc4bf" stroke-width="2"/>
+          <rect x="22" y="60" width="16" height="6" rx="2" fill="#a52a2a"/>
+          <path d="M22 66 H38 V72 A8 8 0 0 1 22 72 Z" fill="#f5a623"/>
+        </svg>
+        <!-- Original avatar: student sitting cross-legged with a laptop -->
+        <svg class="avatar" viewBox="0 0 300 340">
+          <defs>
+            <radialGradient id="g-skin" cx="0.4" cy="0.35" r="0.75"><stop offset="0" stop-color="#dba07a"/><stop offset="1" stop-color="#b47652"/></radialGradient>
+            <linearGradient id="g-hood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c23a36"/><stop offset="1" stop-color="#8a2222"/></linearGradient>
+            <linearGradient id="g-pants" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2d2a35"/><stop offset="1" stop-color="#1a1820"/></linearGradient>
+            <linearGradient id="g-hair" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c1f1e"/><stop offset="1" stop-color="#170f10"/></linearGradient>
+          </defs>
+          <ellipse cx="150" cy="326" rx="110" ry="10" fill="#000" opacity="0.35"/>
+          <!-- back hair -->
+          <path d="M96 120 Q92 56 150 56 Q208 56 204 120 L210 196 Q196 206 182 192 L180 132 L120 132 L118 192 Q104 206 90 196 Z" fill="url(#g-hair)"/>
+          <!-- legs -->
+          <rect x="58" y="258" width="124" height="52" rx="26" fill="url(#g-pants)" transform="rotate(-10 120 284)"/>
+          <rect x="118" y="258" width="124" height="52" rx="26" fill="url(#g-pants)" transform="rotate(10 180 284)"/>
+          <!-- shoes -->
+          <ellipse cx="66" cy="300" rx="24" ry="16" fill="#f4f1ee" transform="rotate(-20 66 300)"/>
+          <ellipse cx="234" cy="300" rx="24" ry="16" fill="#f4f1ee" transform="rotate(20 234 300)"/>
+          <path d="M50 306 Q66 316 84 302" stroke="#cfc8c3" stroke-width="3" fill="none"/>
+          <path d="M216 302 Q234 316 250 306" stroke="#cfc8c3" stroke-width="3" fill="none"/>
+          <!-- neck -->
+          <rect x="138" y="152" width="24" height="22" rx="8" fill="#b47652"/>
+          <!-- hoodie -->
+          <path d="M102 180 Q150 158 198 180 Q212 222 206 268 Q150 286 94 268 Q88 222 102 180 Z" fill="url(#g-hood)"/>
+          <path d="M122 172 Q150 196 178 172" stroke="#f5a623" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <path d="M140 188 L138 214 M160 188 L162 214" stroke="#f4eee9" stroke-width="3" stroke-linecap="round"/>
+          <!-- laptop -->
+          <rect x="108" y="206" width="84" height="54" rx="7" fill="#34303a"/>
+          <rect x="108" y="206" width="84" height="54" rx="7" fill="none" stroke="#4a4552" stroke-width="2"/>
+          <circle cx="150" cy="233" r="7" fill="#f5a623"/>
+          <rect x="98" y="258" width="104" height="9" rx="4" fill="#4a4552"/>
+          <!-- hands -->
+          <circle cx="104" cy="252" r="11" fill="url(#g-skin)"/>
+          <circle cx="196" cy="252" r="11" fill="url(#g-skin)"/>
+          <!-- head -->
+          <circle cx="150" cy="118" r="48" fill="url(#g-skin)"/>
+          <!-- fringe -->
+          <path d="M101 116 Q100 66 150 64 Q200 66 199 116 Q184 88 156 92 Q150 80 140 96 Q118 98 101 116 Z" fill="url(#g-hair)"/>
+          <!-- face -->
+          <ellipse cx="133" cy="124" rx="5.5" ry="6.5" fill="#1b1214"/>
+          <ellipse cx="167" cy="124" rx="5.5" ry="6.5" fill="#1b1214"/>
+          <circle cx="135" cy="121.5" r="1.8" fill="#fff"/>
+          <circle cx="169" cy="121.5" r="1.8" fill="#fff"/>
+          <ellipse cx="122" cy="138" rx="8" ry="5" fill="#ef5a73" opacity="0.35"/>
+          <ellipse cx="178" cy="138" rx="8" ry="5" fill="#ef5a73" opacity="0.35"/>
+          <path d="M142 140 Q150 148 158 140" stroke="#5a2a24" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 70 C 240 20, 480 0, 760 40 C 1000 74, 1200 60, 1440 30 L1440 120 L0 120 Z"/>
+  </svg>
+</div>
+
+<div class="inner page">
+  <main>
+    <section id="projects">
+      <p class="eyebrow">Recent projects</p>
+
+      <article class="post">
+        <h2>Wall-E: an autonomous trash-sorting robot</h2>
+        <p class="when"><b>Sep 2026 – now</b> · Purdue Embedded Systems</p>
+        <p>Contributing to a life-sized robot that spans mechanical, electrical and intelligence subsystems, including a trash-crushing mechanism, a custom PCB, and voice-command and pathfinding behaviors. I'm researching LLM-driven task planning with BTGenBot-2, which generates behavior trees on the robot itself, alongside classic control architectures like finite state machines.</p>
+        <ul class="tags"><li>BTGenBot-2</li><li>Behavior trees</li><li>FSMs</li><li>Embedded systems</li><li>Custom PCB</li></ul>
+      </article>
+
+      <article class="post">
+        <h2>Defense Valuation: pricing aerospace &amp; defense</h2>
+        <p class="when"><b>Jan – May 2026</b> · Purdue Momentum</p>
+        <p>Built an OLS regression on 911 quarterly observations across 14 defense and aerospace firms (2006–2025), pulled through the Alpha Vantage API, using forward selection to narrow 11 features to 5 significant valuation drivers (p &lt; 0.001). Modeled relative EV/EBITDA to flag over- and undervalued firms, such as PLTR against AVAV and HII, and prototyped a dashboard that generalizes to any industry.</p>
+        <ul class="tags"><li>Regression Modeling</li><li>OLS</li><li>EV/EBITDA</li><li>Alpha Vantage API</li></ul>
+        <a class="more" href="https://www.canva.com/design/DAHHnbz7vig/l0FGLfKWL4P7DCzTVR_K6A/view" target="_blank" rel="noopener">View presentation</a>
+      </article>
+
+      <article class="post">
+        <h2>SANSight: spaceflight vision risk monitor</h2>
+        <p class="when"><b>Apr 2026</b> · Catapult Hackathon 2026</p>
+        <p class="badge">Best Use of Hardware</p>
+        <p>An AI early warning system for Spaceflight-Associated Neuro-Ocular Syndrome. It combines an EfficientNet-B0 CNN on retinal scans with a random forest on 4 nutritional biomarkers to produce a personalized 0–100% risk score. We sourced, cleaned and augmented 5 datasets from Kaggle and NASA's LSDA into one feature schema, and shipped the full-stack app in 2 days. The idea traces back to my NASA Aerospace Scholars visit to Johnson Space Center.</p>
+        <ul class="tags"><li>EfficientNet-B0</li><li>Random Forest</li><li>Next.js</li><li>FastAPI</li><li>World ID</li></ul>
+        <a class="more" href="https://devpost.com/software/sansight" target="_blank" rel="noopener">View on Devpost</a>
+      </article>
+
+      <article class="post">
+        <h2>Passline: ADA audits from a 30-second video</h2>
+        <p class="when"><b>Mar 2026</b> · Indy Hacks 2026</p>
+        <p class="badge">1st Place</p>
+        <p>An AI web app that lets small businesses self-audit for ADA compliance instead of paying for a professional inspection. Depth Anything V2 runs on filtered video frames to measure real-world dimensions like door widths and clearances across 4 module types, and a 3-stage Gemini pipeline generates the relevant ADA rule set, flags violations and estimates repair costs.</p>
+        <ul class="tags"><li>Depth Anything V2</li><li>Gemini</li><li>Computer vision</li><li>LLM pipelines</li></ul>
+        <a class="more" href="https://devpost.com/software/passline" target="_blank" rel="noopener">View on Devpost</a>
+      </article>
+
+      <article class="post">
+        <h2>AI Course Recommendation App</h2>
+        <p class="when"><b>Oct – Dec 2025</b> · Purdue Google Developers Group</p>
+        <p>Built the Next.js frontend for an AI-powered course recommendation web app for Purdue students, integrating the AI-driven recommendations into a responsive UI and contributing to system design and feature integration.</p>
+        <ul class="tags"><li>Next.js</li><li>React</li><li>Responsive UI</li><li>System design</li></ul>
+      </article>
+
+      <article class="post">
+        <h2>Surplus Food App</h2>
+        <p class="when"><b>Nov 2023 – Mar 2024</b> · Technovation Girls</p>
+        <p class="badge">Global Quarterfinalist</p>
+        <p>Built a Swift mobile app, with technical and professional guidance from a NASA engineer, that connects restaurants with surplus food to local charities. A map-based interface coordinates donations, pickup locations and collection times, aligned with the UN Sustainable Development Goals for Zero Hunger and Responsible Consumption and Production. Our business proposal and pitch video advanced to the quarterfinals from a global pool of submissions.</p>
+        <ul class="tags"><li>Swift</li><li>iOS</li><li>Map interface</li><li>Pitch &amp; business plan</li></ul>
+      </article>
+    </section>
+
+    <section id="experience">
+      <p class="eyebrow">Experience</p>
+
+      <article class="job">
+        <h2>Undergraduate Data Science Researcher, Mojang Studios (Microsoft)</h2>
+        <p class="org">The Data Mine, Purdue University <span>Aug 2026 – now · West Lafayette, IN</span></p>
+        <ul>
+          <li>Built a multithreaded Python scraper (requests, SQLite) to collect review counts as a sales proxy for 37,000+ Minecraft Marketplace packs, with rate limiting, backoff, and resumable runs.</li>
+          <li>Developing a LightGBM regression model on price, creator track record, pack type, and genre to predict review counts for the 83% of packs missing ratings, expanding analyzable catalog coverage from 17% to 100%.</li>
+          <li>Combining predicted demand with price into a proxy revenue score that ranks all 37,000+ packs instead of only the ~6,300 with real reviews, while iterating on feature engineering to improve model accuracy.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <h2>Cybersecurity Intern</h2>
+        <p class="org">EigenSecure <span>May – Aug 2026 · Dallas, TX</span></p>
+        <ul>
+          <li>Studied application security fundamentals, including the CIA triad, HTTP traffic analysis, and proxy interception, to understand how common web vulnerabilities expose user data and systems.</li>
+          <li>Built and penetration tested vulnerable web apps using WebGoat and OWASP ZAP, exploiting 7+ attack vectors (SQL injection, CSRF, IDOR, session hijacking) across 4 OWASP Top 10 categories.</li>
+          <li>Presented mitigation strategies (parameterized queries, CSRF tokens, bcrypt salting, least privilege) to 10+ engineers and leadership.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <h2>Operating Partner</h2>
+        <p class="org">Sneha Coastlines <span>May 2025 – now · Costa Rica</span></p>
+        <ul>
+          <li>Operate a short-term rental and private transportation business across 4 properties in 2 countries, hosting 200+ guests with a 4.96/5 Airbnb rating within 3 months of launching.</li>
+          <li>Built the brand from scratch, including a bilingual React/Vite website deployed on Vercel, marketing materials, and Touchstay guest guidebooks.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <h2>Integration Manager &amp; Senior Mentor</h2>
+        <p class="org">NASA Aerospace Scholars <span>Oct 2023 – May 2025 · Houston, TX</span></p>
+        <ul>
+          <li>Designed a 3D-modeled lunar habitation system incorporating hydroponics, high-frequency radio communication, and glacier-based water purification; ranked top 6 of 40 teams, earning an invitation to NASA's Johnson Space Center.</li>
+          <li>Led a 10-person team through an Artemis-inspired mission study in collaboration with NASA engineers, coordinating habitat, communications, and life support sub-teams to integrate their designs into one crewed Moon-to-Mars mission concept.</li>
+          <li>Selected as Senior Mentor for the 2024–2025 cohort, mentoring a group of 15 students after completing a selective 6-month aerospace program spanning CAD modeling, coding, and engineering design.</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <aside class="side">
+    <section id="skills">
+      <p class="eyebrow">Top skills</p>
+      <div class="skill-group">
+        <h3>Languages</h3>
+        <div class="pills"><span class="hot">Python</span><span class="hot">C++</span><span>C</span><span>Java</span><span>JavaScript</span><span>HTML/CSS</span><span>SQL</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Frameworks &amp; Tools</h3>
+        <div class="pills"><span>React</span><span>Next.js</span><span>Node.js</span><span>FastAPI</span><span>pandas</span><span>scikit-learn</span><span>TensorFlow</span><span>MongoDB</span><span>Gemini/LLMs</span><span>Git</span><span>Linux</span><span>Bash/Shell</span><span>AutoCAD</span><span>Swift</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Concepts</h3>
+        <div class="pills"><span class="hot">Machine Learning</span><span>Regression Modeling</span><span>Data Visualization</span><span>Financial Analysis</span><span>Application Security</span><span>Embedded Systems</span><span>UI/UX Design</span></div>
+      </div>
+    </section>
+
+    <section id="about">
+      <p class="eyebrow">About me</p>
+      <p>I'm most interested in where computer science and finance meet: fintech, quantitative trading, and using AI to make better financial decisions.</p>
+      <p>Outside of school I run Sneha Coastlines, a short-term rental and transport business across Costa Rica and India, where I handle pricing, projections and the website. I'm also a top 100 nationally ranked badminton player in the US, and I'm teaching myself guitar.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Coursework</p>
+      <ul class="arrow-list">
+        <li>CS 251: Data Structures &amp; Algorithms (C++)</li>
+        <li>CS 250: Computer Architecture</li>
+        <li>CS 240: Programming in C</li>
+        <li>CS 180: Object-Oriented Programming</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <p class="eyebrow">Contact me</p>
+      <div class="contact-card">
+        <span class="email" id="email">chavansneha599@gmail.com</span>
+        <div class="row">
+          <button class="btn" id="copy-btn" type="button">Copy email</button>
+          <a class="btn ghost" href="https://www.linkedin.com/in/snehachavan5" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn ghost" href="https://github.com/snehac2205" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+        <span class="seeking">Looking for Summer 2027 internships in software engineering and quantitative finance.</span>
+      </div>
+    </section>
+  </aside>
+</div>
+
+<footer>
+  <div class="inner">Sneha Chavan · Purdue University · 2026</div>
+</footer>
+
+<script>
+document.getElementById('copy-btn').addEventListener('click', function () {
+  var btn = this, text = document.getElementById('email').textContent;
+  function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = 'Copy email'; }, 1600); }
+  function fallback() {
+    var r = document.createRange(); r.selectNodeContents(document.getElementById('email'));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); done('Selected');
+  }
+  try { navigator.clipboard.writeText(text).then(function () { done('Copied'); }, fallback); }
+  catch (e) { fallback(); }
+});
+</script>
+
+</body>
+</html>
