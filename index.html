@@ -126,6 +126,19 @@ section { scroll-margin-top: 24px; }
 .job ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: var(--soft); font-size: 14.5px; max-width: 68ch; }
 .job li::marker { color: var(--coral); }
 
+/* Project filters */
+[hidden] { display: none !important; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: -6px 0 34px; }
+.filter {
+  font: 600 12.5px var(--body); color: var(--soft); background: transparent; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 999px; padding: 5px 13px;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.filter:hover { border-color: var(--maroon); color: var(--ink); }
+.filter[aria-pressed="true"] { background: var(--maroon); border-color: var(--maroon); color: #fff; }
+.filter .n { font: 400 11px var(--mono); opacity: 0.7; margin-left: 6px; }
+.filter:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
 /* Sidebar */
 aside.side { display: grid; gap: 44px; align-content: start; }
 .side .eyebrow { margin-bottom: 14px; font-size: 14.5px; }
@@ -279,15 +292,31 @@ footer { border-top: 1px solid var(--line); padding-block: 28px 40px; color: var
   <main>
     <section id="projects">
       <p class="eyebrow">Recent projects</p>
+      <div class="filters" role="group" aria-label="Filter projects by type">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">All<span class="n"></span></button>
+        <button class="filter" type="button" data-filter="quant" aria-pressed="false">Finance<span class="n"></span></button>
+        <button class="filter" type="button" data-filter="ai" aria-pressed="false">AI &amp; ML<span class="n"></span></button>
+        <button class="filter" type="button" data-filter="robotics" aria-pressed="false">Robotics &amp; Hardware<span class="n"></span></button>
+        <button class="filter" type="button" data-filter="apps" aria-pressed="false">Web &amp; Mobile Apps<span class="n"></span></button>
+      </div>
 
-      <article class="post">
+      <article class="post" data-tags="quant ai">
+        <h2>HawkLens: AI sustainability planning for real estate</h2>
+        <p class="when"><b>Nov 2026</b> · HackPrinceton 2026</p>
+        <p>A multimodal AI agent that turns buildings into financed sustainability investment plans. A LangGraph team of inspector agents reads CoStar property records, Vexcel aerial and oblique imagery, and Matterport interior scans to find feasible upgrades like rooftop solar, insulation and HVAC. A verifier agent checks every visual claim against its source image and sends anything under 0.7 confidence back for another look, so unverified findings never reach the numbers.</p>
+        <p>Each upgrade runs through 10,000 Monte Carlo simulations for NPV, probability of loss, CVaR and cost per tonne of CO₂ avoided. A PuLP optimizer then finds the cheapest mix of upgrades that hits the owner's emissions target, keeping CVaR linear with the Rockafellar-Uryasev formulation. Approved plans move into Capital One's Nessie API, which opens and funds a retrofit reserve account and books contractor bills.</p>
+        <ul class="tags"><li>LangGraph</li><li>Gemini</li><li>Monte Carlo</li><li>PuLP</li><li>NumPy</li><li>FastAPI</li><li>React</li><li>three.js</li><li>Capital One Nessie</li></ul>
+        <a class="more" href="https://hawklens.vip" target="_blank" rel="noopener">Visit hawklens.vip</a>
+      </article>
+
+      <article class="post" data-tags="robotics ai">
         <h2>Wall-E: an autonomous trash-sorting robot</h2>
         <p class="when"><b>Sep 2026 – now</b> · Purdue Embedded Systems</p>
         <p>Contributing to a life-sized robot that spans mechanical, electrical and intelligence subsystems, including a trash-crushing mechanism, a custom PCB, and voice-command and pathfinding behaviors. I'm researching LLM-driven task planning with BTGenBot-2, which generates behavior trees on the robot itself, alongside classic control architectures like finite state machines.</p>
         <ul class="tags"><li>BTGenBot-2</li><li>Behavior trees</li><li>FSMs</li><li>Embedded systems</li><li>Custom PCB</li></ul>
       </article>
 
-      <article class="post">
+      <article class="post" data-tags="quant">
         <h2>Defense Valuation: pricing aerospace &amp; defense</h2>
         <p class="when"><b>Jan – May 2026</b> · Purdue Momentum</p>
         <p>Built an OLS regression on 911 quarterly observations across 14 defense and aerospace firms (2006–2025), pulled through the Alpha Vantage API, using forward selection to narrow 11 features to 5 significant valuation drivers (p &lt; 0.001). Modeled relative EV/EBITDA to flag over- and undervalued firms, such as PLTR against AVAV and HII, and prototyped a dashboard that generalizes to any industry.</p>
@@ -295,7 +324,7 @@ footer { border-top: 1px solid var(--line); padding-block: 28px 40px; color: var
         <a class="more" href="https://www.canva.com/design/DAHHnbz7vig/l0FGLfKWL4P7DCzTVR_K6A/view" target="_blank" rel="noopener">View presentation</a>
       </article>
 
-      <article class="post">
+      <article class="post" data-tags="ai robotics">
         <h2>SANSight: spaceflight vision risk monitor</h2>
         <p class="when"><b>Apr 2026</b> · Catapult Hackathon 2026</p>
         <p class="badge">Best Use of Hardware</p>
@@ -304,7 +333,7 @@ footer { border-top: 1px solid var(--line); padding-block: 28px 40px; color: var
         <a class="more" href="https://devpost.com/software/sansight" target="_blank" rel="noopener">View on Devpost</a>
       </article>
 
-      <article class="post">
+      <article class="post" data-tags="ai apps">
         <h2>Passline: ADA audits from a 30-second video</h2>
         <p class="when"><b>Mar 2026</b> · Indy Hacks 2026</p>
         <p class="badge">1st Place</p>
@@ -313,14 +342,14 @@ footer { border-top: 1px solid var(--line); padding-block: 28px 40px; color: var
         <a class="more" href="https://devpost.com/software/passline" target="_blank" rel="noopener">View on Devpost</a>
       </article>
 
-      <article class="post">
+      <article class="post" data-tags="apps">
         <h2>AI Course Recommendation App</h2>
         <p class="when"><b>Oct – Dec 2025</b> · Purdue Google Developers Group</p>
         <p>Built the Next.js frontend for an AI-powered course recommendation web app for Purdue students, integrating the AI-driven recommendations into a responsive UI and contributing to system design and feature integration.</p>
         <ul class="tags"><li>Next.js</li><li>React</li><li>Responsive UI</li><li>System design</li></ul>
       </article>
 
-      <article class="post">
+      <article class="post" data-tags="apps">
         <h2>Surplus Food App</h2>
         <p class="when"><b>Nov 2023 – Mar 2024</b> · Technovation Girls</p>
         <p class="badge">Global Quarterfinalist</p>
@@ -436,6 +465,21 @@ document.getElementById('copy-btn').addEventListener('click', function () {
   try { navigator.clipboard.writeText(text).then(function () { done('Copied'); }, fallback); }
   catch (e) { fallback(); }
 });
+
+// Project filters
+(function () {
+  var btns = [].slice.call(document.querySelectorAll('.filter'));
+  var posts = [].slice.call(document.querySelectorAll('#projects .post'));
+  function has(p, f) { return f === 'all' || (' ' + (p.dataset.tags || '') + ' ').indexOf(' ' + f + ' ') > -1; }
+  btns.forEach(function (b) {
+    var f = b.dataset.filter;
+    b.querySelector('.n').textContent = posts.filter(function (p) { return has(p, f); }).length;
+    b.addEventListener('click', function () {
+      btns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      posts.forEach(function (p) { p.hidden = !has(p, f); });
+    });
+  });
+})();
 </script>
 
 </body>
